@@ -1,125 +1,197 @@
+---
 
 # 📚 RAG-Based-Context-Aware-Document-Assistant
 
-An end-to-end Retrieval-Augmented Generation (RAG) system that transforms PDF documents into an intelligent, context-aware question answering assistant using Google Gemini, FAISS, and Transformer-based embeddings.
+A **Retrieval-Augmented Generation (RAG)** based AI system that allows users to upload PDF documents and interact with them using natural language questions powered by **Google Gemini AI + FAISS vector search**.
 
-🚀 Overview
+---
 
-The RAG-Based-Context-Aware-Document-Assistant is a GenAI-powered application that enables users to interact with PDF documents using natural language queries.
+## 🚀 Overview
 
-It combines semantic search (retrieval) with large language model reasoning (generation) to deliver accurate, context-grounded responses.
+This project combines:
 
-Instead of manually reading documents, users can simply upload a PDF and ask questions like a chatbot.
+* 🔍 **Semantic Search (Retrieval)** using FAISS
+* 🤖 **Large Language Model (Generation)** using Google Gemini
+* 📄 PDF parsing and chunking
+* 🧠 Embedding-based context understanding
 
-🎯 Key Features
-📄 Upload and process PDF documents dynamically
-🧠 Retrieval-Augmented Generation (RAG) pipeline implementation
-🔍 Semantic search using FAISS vector database
-🤖 Google Gemini-powered intelligent response generation
-✂️ Smart text chunking with overlap preservation
-📊 Source context visibility for transparency
-💬 Interactive Streamlit-based UI
-⚡ Fast embedding generation using Sentence Transformers
-🏗️ System Architecture
+It enables users to upload PDFs and ask questions like a chatbot, receiving accurate, context-aware answers directly from the document.
+
+---
+
+## ✨ Key Features
+
+* 📄 Upload and process PDF documents dynamically
+* 🧠 Retrieval-Augmented Generation (RAG) pipeline
+* 🔍 Semantic search using FAISS vector database
+* 🤖 Google Gemini-powered response generation
+* ✂️ Smart text chunking with overlap preservation
+* 📊 Source context visibility for transparency
+* 💬 Interactive Streamlit UI
+* ⚡ Fast embedding generation using Sentence Transformers
+
+---
+
+## 🏗️ System Architecture
+
+```
 PDF Document
-     ↓
+   ↓
 Text Extraction (PyPDF2)
-     ↓
+   ↓
 Chunking (Overlapping Segments)
-     ↓
-Embedding Generation (all-MiniLM-L6-v2)
-     ↓
-Vector Store (FAISS Index)
-     ↓
+   ↓
+Embedding Generation (MiniLM)
+   ↓
+FAISS Vector Store
+   ↓
 User Query → Embedding
-     ↓
+   ↓
 Similarity Search (Top-K Retrieval)
-     ↓
+   ↓
 Context Augmentation
-     ↓
+   ↓
 Google Gemini LLM
-     ↓
+   ↓
 Final Answer + Source Context
-🛠️ Tech Stack
-Layer	Technology
-Frontend	Streamlit
-LLM	Google Gemini (1.5 Flash / Pro)
-Vector Database	FAISS
-Embeddings	Sentence Transformers (MiniLM)
-PDF Processing	PyPDF2
-Language	Python
-📂 Project Structure
+```
+
+---
+
+## 🛠️ Tech Stack
+
+* **Frontend:** Streamlit
+* **LLM:** Google Gemini (1.5 Flash / Pro)
+* **Vector DB:** FAISS
+* **Embeddings:** Sentence Transformers (all-MiniLM-L6-v2)
+* **PDF Processing:** PyPDF2
+* **Language:** Python
+
+---
+
+## 📁 Project Structure
+
+```
 RAG-Based-Context-Aware-Document-Assistant/
 │
 ├── app.py                 # Main Streamlit application
-├── requirements.txt       # Project dependencies
-└── README.md              # Project documentation
-⚙️ Installation & Setup
-1️⃣ Clone the Repository
+├── requirements.txt       # Dependencies
+└── README.md              # Documentation
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone Repository
+
+```bash
 git clone https://github.com/pragna7/RAG-Based-Context-Aware-Document-Assistant.git
 cd RAG-Based-Context-Aware-Document-Assistant
-2️⃣ Create Virtual Environment (Recommended)
+```
+
+---
+
+### 2️⃣ Create Virtual Environment
+
+```bash
 python -m venv venv
 venv\Scripts\activate   # Windows
-3️⃣ Install Dependencies
-pip install -r requirements.txt
-4️⃣ Run the Application
-streamlit run app.py
-🔑 API Configuration
+```
 
-This project uses Google Gemini API for response generation.
+---
+
+### 3️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### 4️⃣ Run Application
+
+```bash
+streamlit run app.py
+```
+
+---
+
+## 🔑 API Configuration
+
+This project uses **Google Gemini API**.
 
 👉 Get API Key:
-https://makersuite.google.com/app/apikey
+[https://makersuite.google.com/app/apikey](https://makersuite.google.com/app/apikey)
 
-Then enter the API key in the application sidebar.
+Then paste it inside the Streamlit sidebar.
 
-💡 How It Works (RAG Pipeline)
-📄 PDF document is uploaded
-✂️ Text is extracted and split into chunks
-🔢 Embeddings are generated for each chunk
-📦 Stored in FAISS vector index
-🔍 User query is converted into embeddings
-🎯 Relevant chunks are retrieved using similarity search
-🤖 Gemini generates final response using retrieved context
-🧪 Example Queries
-“Summarize this document”
-“What are the key findings?”
-“What statistics are mentioned?”
-“Explain the main conclusions”
-“Give insights from this document”
-📈 Engineering Highlights
-Efficient chunk-based retrieval strategy
-Embedding-driven semantic search (not keyword search)
-Reduced hallucination via context grounding
-Modular RAG pipeline architecture
-Stateless session-based design using Streamlit
-🚧 Limitations
-Scanned PDFs require OCR (not included)
-Large documents may need chunk optimization tuning
-Requires internet access for Gemini API
-🔮 Future Enhancements
-🔥 Multi-document RAG support
-🔥 Conversational memory (chat history)
-🔥 OCR support for scanned PDFs
-🔥 Highlight answers inside PDF viewer
-🔥 Cloud deployment (Streamlit / AWS)
-🔥 Authentication system for users
-👩‍💻 Author
+---
 
-Pragna Seetha
-GitHub: @pragna7
+## 💡 How It Works
 
-⭐ Repository Impact
+1. Upload a PDF file
+2. Text is extracted and split into chunks
+3. Each chunk is converted into embeddings
+4. Stored inside FAISS vector database
+5. User query is embedded
+6. Most relevant chunks are retrieved
+7. Gemini generates final answer using context
 
-If you found this project useful, please consider giving a ⭐ to support further development.
+---
 
-🧠 Why this project matters
+## 🧪 Example Questions
+
+* Summarize this document
+* What are the key findings?
+* What statistics are mentioned?
+* Explain the main conclusions
+* Give insights from this PDF
+
+---
+
+## 📈 Why This Project is Strong (Recruiter View)
 
 This project demonstrates:
 
-Real-world GenAI system design
-Strong understanding of RAG architecture
-Practical use of vector databases (FAISS)
-Integration of LLMs with external knowledge sources
-End-to-end AI application development skills
+* Real-world **RAG system design**
+* Vector database integration (FAISS)
+* LLM orchestration (Gemini API)
+* Embedding-based semantic search
+* End-to-end AI application development
+* Production-style architecture thinking
+
+---
+
+## 🚧 Limitations
+
+* Works best with text-based PDFs
+* Requires internet for Gemini API
+* Large PDFs may need tuning for chunk size
+
+---
+
+## 🔮 Future Improvements
+
+* Multi-PDF chat system
+* Chat memory (conversation history)
+* OCR support for scanned PDFs
+* Cloud deployment (Streamlit/AWS)
+* Highlight answers directly in PDF
+
+---
+
+## 👩‍💻 Author
+
+**Pragna Seetha**
+GitHub: [https://github.com/pragna7](https://github.com/pragna7)
+
+---
+
+## ⭐ If you like this project
+
+Give it a ⭐ on GitHub to support development.
+
+---
+
+
